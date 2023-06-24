@@ -2,12 +2,12 @@ package com.kubernatesconnect.kubernatesconnect.client;
 
 import com.kubernatesconnect.kubernatesconnect.constants.AppConstants;
 import io.kubernetes.client.custom.V1Patch;
+import io.kubernetes.client.extended.wait.Wait;
 import io.kubernetes.client.openapi.ApiClient;
 import io.kubernetes.client.openapi.ApiException;
 import io.kubernetes.client.openapi.apis.AppsV1Api;
 import io.kubernetes.client.openapi.models.*;
 import io.kubernetes.client.util.PatchUtils;
-import io.kubernetes.client.util.wait.Wait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Collections;
 
-public class StartDeploymentKubernates {
+public final class StartDeploymentKubernates {
 
     private final static Logger logger = LoggerFactory.getLogger(StartDeploymentKubernates.class);
     private ApiClient apiclient  = null;
@@ -25,8 +25,6 @@ public class StartDeploymentKubernates {
 
     /*
      **  https://github.com/kubernetes-client/java/blob/automated-release-17.0.0/examples/examples-release-15/src/main/java/io/kubernetes/client/examples/DeployRolloutRestartExample.java
-     *
-     *
      */
     public boolean startKubernatesDeployment() throws ApiException {
         AppsV1Api appsV1Api = new AppsV1Api(this.apiclient);
@@ -110,6 +108,7 @@ public class StartDeploymentKubernates {
                     () -> {
                         try {
                             System.out.println("Waiting until example deployment restarted successfully...");
+                            logger.info("Waiting until example deployment restarted successfully...");
                             return appsV1Api
                                     .readNamespacedDeployment(AppConstants.DEPLOYMENTNAME, AppConstants.NAMESPACE, null, null, null)
                                     .getStatus()
@@ -120,7 +119,7 @@ public class StartDeploymentKubernates {
                             return false;
                         }
                     });
-            logger.info("Example deployment restarted successfully!");
+            logger.info("Jdoodle deployment restarted successfully!");
         } catch (ApiException e) {
             e.printStackTrace();
         }

@@ -6,7 +6,7 @@
 3. kubectl describe deployments - describe the deployments
 4. kubectl get deployments - get all the deployments
 
-
+   kubectl exec jdoodle-deploy-6b6cf6459-s862q -- curl -s http://localhost
 
 minikube
 https://minikube.sigs.k8s.io/docs/tutorials/multi_node/

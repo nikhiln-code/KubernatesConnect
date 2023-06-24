@@ -27,17 +27,17 @@ public class KubernatesClientService {
     }
 
     public boolean createStartDockerk8s() throws ApiException {
-        logger.info("Inside createStartDocker");
+        logger.info("Inside KubernatesClientService class :createStartDockerk8s()");
         return this.client.createStartDockerk8s();
     }
 
     public boolean stopDockerk8s() throws KubectlException {
-        logger.info("Inside stopDockerk8s");
+        logger.info("Inside KubernatesClientService class : stopDockerk8s()");
         return this.client.stopDockerk8s();
     }
 
     public String getPagek8s(){
-        logger.info("Inside getPagek8s");
+        logger.info("Inside KubernatesClientService class : getPagek8s()");
         return this.client.getPagek8s();
     }
 }
